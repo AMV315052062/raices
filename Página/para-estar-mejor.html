@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Para estar mejor - Raíces</title>
+    
+    <style>
+        /* ================================================= */
+        /* === ESTILOS GLOBALES (COPIADOS DE INDEX.HTML) === */
+        /* ================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2C4F4F;
+            line-height: 1.6;
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: #FFFFFF;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Asegura que el menú quede encima */
+            flex-wrap: wrap; /* Permite que el menú baje en móviles */
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo .logo-text h1 {
+            font-size: 1.5rem;
+            color: #4A7C7C;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo .logo-text p {
+            font-size: 0.75rem;
+            color: #2C4F4F;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Menú Desktop */
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #2C4F4F;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5A8E8E;
+        }
+
+        /* ===== BOTÓN HAMBURGUESA (Oculto en PC) ===== */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #4A7C7C;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C4F4F;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        /* ============================================== */
+        /* === ESTILOS PARA ESTA PÁGINA (CONTENIDO) === */
+        /* ============================================== */
+        
+        .main-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+        
+        .main-content h1 {
+            font-size: 2.8rem;
+            color: #4A7C7C;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .main-content h2 {
+            font-size: 2rem;
+            color: #C17B61;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .main-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        /* Estilos de botón (copiados de index) */
+        .cta-button {
+            background-color: #C17B61;
+            color: white;
+            padding: 1.1rem 2.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(193, 123, 97, 0.3);
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(193, 123, 97, 0.4);
+            background-color: #D4845C;
+        }
+
+        /* =================================================== */
+        /* === ESTILOS PARA LA NUEVA SECCIÓN DE REFERIDOS === */
+        /* =================================================== */
+        .referral-section {
+            background-color: #F0EBE3;
+            padding: 5rem 5%;
+            margin-top: 5rem;
+        }
+        
+        .referral-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: flex-start; /* <-- CÓDIGO DE ALINEACIÓN SUPERIOR */
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .referral-content h2 {
+            font-size: 2.5rem;
+            color: #4A7C7C;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .referral-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .referral-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .referral-content label {
+            font-weight: 600;
+            margin-bottom: -0.5rem;
+        }
+        
+        .referral-content input[type="text"],
+        .referral-content input[type="email"],
+        .referral-content input[type="tel"] {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        .referral-content .consent-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .referral-content .consent-box input[type="checkbox"] {
+            width: auto;
+        }
+        .referral-content .consent-box label {
+            margin: 0;
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+        
+        .referral-logo {
+            display: flex;
+            align-items: flex-start; /* <-- CÓDIGO DE ALINEACIÓN SUPERIOR */
+            justify-content: center;
+            padding-top: 14.5rem; /* <-- CÓDIGO DE ALINEACIÓN VERTICAL (AJUSTE MANUAL) */
+        }
+        
+        .referral-logo img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+        }
+
+        /* ========================================= */
+        /* === RESPONSIVE (MÓVIL) CON HAMBURGUESA === */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón hamburguesa */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Estilo del menú en móvil */
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none; /* Oculto por defecto */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding-top: 1.5rem;
+                border-top: 1px solid #eee;
+                margin-top: 1rem;
+            }
+
+            /* Clase para mostrar el menú cuando se hace clic */
+            nav ul.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+
+            /* Estilo de los enlaces en móvil */
+            nav ul li {
+                margin: 0.8rem 0;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+                display: block;
+                padding: 0.5rem;
+            }
+
+            /* Animación suave para el menú */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* Animación del botón hamburguesa */
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Ajustes de contenido */
+            .main-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .referral-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .referral-logo {
+                max-width: 250px;
+                margin-top: 0;
+                padding-top: 0; /* Reseteo para móvil */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="Home.html">
+                <img src="Logo homepage.png" alt="Logo de Raíces - Volver al inicio">
+                <div class="logo-text">
+                    <h1>RAÍCES</h1>
+                    <p>Tu bienestar emocional sin fronteras</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="Home.html" onclick="toggleMenu()">Inicio</a></li>
+                
+                <li><a href="Home.html#como-funciona" onclick="toggleMenu()">Cómo funciona</a></li>
+                
+                <li><a href="Home.html#para-quien" onclick="toggleMenu()">¿Para quién?</a></li>
+                
+                <li><a href="agendar.html" onclick="toggleMenu()">Contacto</a></li>
+                
+                <li><a href="para-estar-mejor.html" onclick="toggleMenu()">Para estar mejor</a></li>
+                <li><a href="testimonios.html" onclick="toggleMenu()">Testimonios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+        <h1>Para estar mejor</h1>
+        
+        <p>
+            Bienvenido a tu espacio de recursos. Aquí encontrarás artículos, guías y
+            herramientas prácticas diseñadas para acompañarte en tu día a día. 
+            El bienestar es un camino, no un destino, y aquí tienes material
+            de apoyo para cada paso.
+        </p>
+        
+        <img src="imagen-recursos.jpg" alt="Persona leyendo tranquilamente">
+
+        <h2>Ansiedad y Estrés</h2>
+        <p>
+            Aprende a identificar las señales de la ansiedad y descubre técnicas
+            de respiración y mindfulness que puedes aplicar en cualquier momento.
+            El estrés es una respuesta natural, pero podemos aprender a gestionarlo.
+        </p>
+
+        <h2>Nostalgia Migratoria</h2>
+        <p>
+            Extrañar es parte del proceso de vivir lejos. Hablamos sobre cómo
+            abrazar la nostalgia, mantener conexiones significativas y construir
+            un nuevo sentido de "hogar" donde quiera que estés.
+        </p>
+        
+    </main>
+
+    <section class="referral-section">
+        <div class="referral-container">
+            
+            <div class="referral-content">
+                <h2>¿Conoces a alguien que necesita ayuda?</h2>
+                <p>Comparte algún dato para poder contactarle ❤️</p>
+                
+                <form id="referralForm" action="https://script.google.com/macros/s/AKfycbxUFUnxlPjIqpgqmPCKEE0dDTuuxvdCpRAQlrDocaElvLUlJKLB6_tc1345cAjGeIJfHg/exec" method="POST">
+                    <label for="ref-nombre">Nombre:</label>
+                    <input type="text" id="ref-nombre" name="nombre" required>
+                    
+                    <label for="ref-email">Email:</label>
+                    <input type="email" id="ref-email" name="email" required>
+                    
+                    <label for="ref-telefono">Teléfono:</label>
+                    <input type="tel" id="ref-telefono" name="telefono">
+                    
+                    <div class="consent-box">
+                        <input type="checkbox" id="ref-consent" name="consent" required>
+                        <label for="ref-consent">Confirmo que tengo el permiso de esta persona para compartir sus datos.</label>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Enviar Referencia</button>
+                </form>
+            </div>
+            
+            <div class="referral-logo">
+                <img src="Logo homepage.png" alt="Logo de Raíces">
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Raíces - Apoyo Psicológico Profesional</p>
+        <p>Atención en línea • Confidencial • En español</p>
+        
+        <div class="footer-links">
+            <a href="Aviso_privacidad.html">Términos y Condiciones ; Aviso de Privacidad</a>
+            <a href="preguntas.html">Preguntas frecuentes</a>
+            <a href="agendar.html">Contacto</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        /* ===== SCRIPT PARA REDIRECCIÓN AUTOMÁTICA ===== */
+        document.getElementById('referralForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Detiene el envío normal que te saca de la página
+            
+            const form = e.target;
+            const data = new FormData(form);
+            const action = form.action;
+            const button = form.querySelector('button');
+            
+            // Cambiar texto del botón para feedback visual
+            button.textContent = "Enviando...";
+            button.disabled = true;
+
+            // Enviar datos usando fetch en segundo plano
+            fetch(action, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors' // Importante para enviar datos a Google Apps Script
+            })
+            .then(() => {
+                // Éxito: Redirigir a gracias.html
+                window.location.href = 'gracias.html';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Si hay error, intentar redirigir de todos modos o avisar
+                window.location.href = 'gracias.html';
+            });
+        });
+    </script>
+</body>
+</html>

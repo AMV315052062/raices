@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias! - Raíces</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; /* Cambiado a min-height para evitar cortes en móviles */
+            background-color: #F0EBE3; /* El color beige de tu web */
+            color: #2C4F4F; /* El color de texto principal */
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        .container { 
+            max-width: 600px; 
+            background: rgba(255, 255, 255, 0.5); /* Fondo sutil para destacar */
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 { 
+            font-size: 2.5rem; 
+            color: #4A7C7C; /* El azul-verde */
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Estilos del botón de PayPal */
+        .paypal-btn {
+            background-color: #0070BA; /* Azul oficial de PayPal */
+            color: white !important; /* Forzar color blanco */
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 112, 186, 0.3);
+            margin: 1.5rem 0;
+            border: 2px solid transparent;
+        }
+
+        .paypal-btn:hover {
+            transform: translateY(-3px);
+            background-color: #003087;
+            box-shadow: 0 8px 20px rgba(0, 112, 186, 0.4);
+            text-decoration: none;
+        }
+
+        /* Estilos del enlace de volver */
+        .back-link { 
+            color: #C17B61; /* El color terracota */
+            font-weight: bold; 
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: #A05A40;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Gracias!</h1>
+        <p>Hemos recibido los datos correctamente. Nos pondremos en contacto a la brevedad.</p>
+        
+        <p>Si deseas agilizar el proceso y asegurar tu espacio, realiza el pago ahora mismo:</p>
+        
+        <!-- Botón de PayPal -->
+        <a href="https://www.paypal.com/ncp/payment/993HAU2N6JS3W" target="_blank" class="paypal-btn">
+            💳 Pagar con PayPal
+        </a>
+        
+        <br>
+        
+        <a href="Home.html" class="back-link">← Volver a la página principal</a>
+        
+    </div>
+</body>
+</html>
