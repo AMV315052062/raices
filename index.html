@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raíces - Ayuda personalizada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2C4F4F;
+            line-height: 1.6;
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: #FFFFFF;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Aumentado para que el menú tape el contenido */
+            flex-wrap: wrap; /* Permite que el menú baje en móviles */
+        }
+
+        /* CSS para el Logo */
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo .logo-text h1 {
+            font-size: 1.5rem;
+            color: #4A7C7C;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo .logo-text p {
+            font-size: 0.75rem;
+            color: #2C4F4F;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Menú de navegación (Desktop) */
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #2C4F4F;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5A8E8E;
+        }
+
+        /* ===== BOTÓN HAMBURGUESA (Oculto en PC) ===== */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #4A7C7C;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #5A8E8E 0%, #4A7C7C 100%);
+            color: white;
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.92;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            background-color: #C17B61;
+            color: white;
+            padding: 1.1rem 2.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(193, 123, 97, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(193, 123, 97, 0.4);
+            background-color: #D4845C;
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image .hero-illustration {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background-color: transparent; 
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: none; 
+            border: none; 
+            overflow: hidden; 
+        }
+
+        .hero-image .hero-illustration img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
+
+        /* Secciones Generales */
+        .como-funciona {
+            padding: 5rem 5%;
+            background-color: #F0EBE3;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4A7C7C;
+            margin-bottom: 3.5rem;
+            font-weight: 700;
+        }
+
+        .steps, .beneficios-grid, .audiencia-cards {
+            display: grid;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .steps { grid-template-columns: repeat(3, 1fr); }
+        .beneficios-grid, .audiencia-cards { grid-template-columns: repeat(2, 1fr); }
+
+        .step, .beneficio, .audiencia-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+        
+        .step:hover, .beneficio:hover, .audiencia-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step { text-align: center; }
+        
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #C17B61 0%, #D4845C 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 15px rgba(193, 123, 97, 0.3);
+        }
+
+        .beneficios {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .beneficio {
+            background-color: #F0EBE3;
+            border-left: 5px solid #5A8E8E;
+        }
+
+        .beneficio-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+        .beneficio h3, .step h3 { color: #4A7C7C; margin-bottom: 1rem; font-size: 1.4rem; font-weight: 600; }
+        .beneficio p, .step p { color: #2C4F4F; line-height: 1.7; }
+
+        .para-quien {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, rgba(90,142,142,0.08) 0%, rgba(240,235,227,0.5) 100%);
+        }
+
+        .audiencia-card h3 { color: #C17B61; margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 600; }
+        .audiencia-card ul { list-style: none; padding-left: 0; }
+        .audiencia-card li { color: #2C4F4F; margin-bottom: 1rem; padding-left: 2rem; position: relative; line-height: 1.6; }
+        .audiencia-card li:before { content: "✓"; color: #5A8E8E; font-size: 1.3rem; font-weight: bold; position: absolute; left: 0; }
+
+        .testimonial { padding: 4rem 5%; background-color: #4A7C7C; color: white; text-align: center; }
+        .testimonial-content { max-width: 800px; margin: 0 auto; }
+        .testimonial-quote { font-size: 1.3rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.8; opacity: 0.95; }
+        .testimonial-author { font-size: 1rem; opacity: 0.85; }
+
+        .cta-final { background: linear-gradient(135deg, #5A8E8E 0%, #4A7C7C 100%); color: white; padding: 5rem 5%; text-align: center; }
+        .cta-final h2 { font-size: 2.8rem; margin-bottom: 1.5rem; font-weight: 700; }
+        .cta-final p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.92; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .cta-button-secondary {
+            background-color: white; color: #4A7C7C; padding: 1.1rem 2.8rem; border: none; border-radius: 50px;
+            font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-block; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .cta-button-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); background-color: #F0EBE3; }
+
+        footer { background-color: #2C4F4F; color: white; padding: 3rem 5%; text-align: center; }
+        footer p { opacity: 0.9; margin-bottom: 0.5rem; }
+        .footer-links { margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-links a:hover { opacity: 1; }
+
+        /* ========================================= */
+        /* === RESPONSIVE (MÓVIL) CON HAMBURGUESA === */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            
+            /* Mostrar el botón hamburguesa */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Estilo del menú en móvil */
+            nav {
+                width: 100%; /* Ocupa todo el ancho */
+            }
+
+            nav ul {
+                display: none; /* Oculto por defecto */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding-top: 1.5rem;
+                border-top: 1px solid #eee;
+                margin-top: 1rem;
+            }
+
+            /* Clase para mostrar el menú cuando se hace clic */
+            nav ul.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+
+            /* Estilo de los enlaces en móvil */
+            nav ul li {
+                margin: 0.8rem 0;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+                display: block;
+                padding: 0.5rem;
+            }
+
+            /* Animación suave para el menú */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* Animación del botón hamburguesa */
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Ajustes Generales de contenido */
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 5%;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h2 { font-size: 2.2rem; }
+            .hero-content .cta-button { width: 100%; display: block; box-sizing: border-box; }
+            .hero-image .hero-illustration { height: 280px; margin: 0 auto; }
+
+            .steps, .beneficios-grid, .audiencia-cards { grid-template-columns: 1fr; gap: 2rem; }
+            .como-funciona, .beneficios, .para-quien, .cta-final { padding: 3rem 5%; }
+            .step, .beneficio, .audiencia-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <div class="logo">
+            <a href="#inicio">
+                <img src="Logo homepage.png" alt="Logo de Raíces - Volver al inicio">
+                <div class="logo-text">
+                    <h1>RAÍCES</h1>
+                    <p>Tu bienestar emocional sin fronteras</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav>
+            <ul id="nav-links">
+                <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+                <li><a href="#como-funciona" onclick="toggleMenu()">Cómo funciona</a></li>
+                <li><a href="#para-quien" onclick="toggleMenu()">¿Para quién?</a></li>
+                <li><a href="agendar.html" onclick="toggleMenu()">Contacto</a></li>
+                <li><a href="para-estar-mejor.html">Para estar mejor</a></li>
+                <li><a href="testimonios.html">Testimonios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Donde quiera que estés, aquí tienes un lugar</h2>
+            <p class="tagline">Apoyo emocional en español, desde la comodidad de tu hogar</p>
+            <p>Atención personalizada para tu bienestar emocional. Especializada en acompañar a personas en procesos de migración y adaptación, con comprensión profunda de tu cultura y tu idioma.</p>
+            
+            <a href="agendar.html" class="cta-button">Agenda tu primera sesión</a>
+            
+        </div>
+        <div class="hero-image">
+            <div class="hero-illustration">
+                <img src="Imagen1.png" alt="Ilustración de conexión o apoyo emocional">
+            </div>
+        </div>
+    </section>
+
+    <section class="como-funciona" id="como-funciona">
+        <h2 class="section-title">¿Cómo funciona?</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Agenda tu cita</h3>
+                <p>Elige el horario que mejor se ajuste a tu rutina. Atención adaptada a diferentes zonas horarias. Completamente confidencial, sin cuenta, sin datos.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Conéctate en línea</h3>
+                <p>Sesiones seguras por videollamada desde cualquier lugar. Solo necesitas internet y un espacio tranquilo.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Inicia tu proceso</h3>
+                <p>Trabajo personalizado centrado en tus necesidades. Acompañamiento profesional en tu idioma y con comprensión cultural.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="beneficios">
+        <h2 class="section-title">¿Por qué elegir Raíces?</h2>
+        <div class="beneficios-grid">
+            <div class="beneficio">
+                <div class="beneficio-icon">🔒</div>
+                <h3>100% Confidencial</h3>
+                <p>Tus sesiones son completamente privadas y seguras. Tu información está protegida en todo momento.</p>
+            </div>
+            <div class="beneficio">
+                <div class="beneficio-icon">🌎</div>
+                <h3>Comprensión Cultural</h3>
+                <p>Atención con sensibilidad hacia la experiencia migratoria y las particularidades de la cultura latinoamericana.</p>
+            </div>
+            <div class="beneficio">
+                <div class="beneficio-icon">⏰</div>
+                <h3>Horarios Flexibles</h3>
+                <p>Adaptamos las sesiones a tu disponibilidad, no importa si es muy temprano o muy tarde.</p>
+            </div>
+            <div class="beneficio">
+                <div class="beneficio-icon">💚</div>
+                <h3>Sin Juicios</h3>
+                <p>Un espacio seguro donde puedes ser tú.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="para-quien" id="para-quien">
+        <h2 class="section-title">¿Es Raíces para ti?</h2>
+        <div class="audiencia-cards">
+            <div class="audiencia-card">
+                <h3>Personas en proceso migratorio</h3>
+                <ul>
+                    <li>Adaptación a un nuevo país y cultura</li>
+                    <li>Manejo de la nostalgia y distancia familiar</li>
+                    <li>Estrés por estatus migratorio</li>
+                    <li>Construcción de nueva identidad</li>
+                    <li>Soledad y aislamiento</li>
+                </ul>
+            </div>
+            <div class="audiencia-card">
+                <h3>Cualquier persona que busque apoyo</h3>
+                <ul>
+                    <li>Ansiedad y estrés</li>
+                    <li>Manejo de emociones</li>
+                    <li>Relaciones interpersonales</li>
+                    <li>Autoestima y desarrollo personal</li>
+                    <li>Cambios y transiciones de vida</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="testimonial-content">
+            <p class="testimonial-quote">"Encontrar un espacio donde pudiera hablar en mi idioma y sentirme comprendida en mi proceso migratorio fue fundamental. Raíces me ayudó a encontrar estabilidad emocional en un momento muy difícil."</p>
+            <p class="testimonial-author">— María L., Cliente</p>
+        </div>
+    </section>
+
+    <section class="cta-final" id="contacto">
+        <h2>Da el primer paso hacia tu bienestar</h2>
+        <p>Estás a una conversación de comenzar tu proceso de sanación y crecimiento personal</p>
+        
+        <a href="agendar.html" class="cta-button-secondary">Contactar ahora</a>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Raíces - Ayuda personalizada</p>
+        <p>Atención en línea • Confidencial • En español</p>
+        
+        <div class="footer-links">
+            <a href="Aviso_privacidad.html">Términos y Condiciones ; Aviso de Privacidad</a>
+            <a href="preguntas.html">Preguntas frecuentes</a>
+            <a href="agendar.html">Contacto</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

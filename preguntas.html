@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Raíces</title>
+    <style>
+        /* ================================================= */
+        /* === ESTILOS GLOBALES (COPIADOS DE INDEX.HTML) === */
+        /* ================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2C4F4F;
+            line-height: 1.6;
+            background-color: #FFFFFF;
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: #FFFFFF;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo .logo-text h1 {
+            font-size: 1.5rem;
+            color: #4A7C7C;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo .logo-text p {
+            font-size: 0.75rem;
+            color: #2C4F4F;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #2C4F4F;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5A8E8E;
+        }
+
+        /* ===== BOTÓN HAMBURGUESA ===== */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #4A7C7C;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C4F4F;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* ================================================= */
+        /* === ESTILOS ESPECÍFICOS DE PREGUNTAS.HTML ===== */
+        /* ================================================= */
+
+        .faq-header {
+            text-align: center;
+            padding: 4rem 5% 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-header h1 {
+            font-size: 2.8rem;
+            color: #4A7C7C;
+            margin-bottom: 1rem;
+        }
+
+        /* Caja destacada para el mensaje importante */
+        .highlight-message {
+            background-color: #F0EBE3;
+            border-left: 5px solid #C17B61;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .highlight-message p {
+            color: #C17B61;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 5%;
+        }
+
+        /* Estilo del Acordeón */
+        details {
+            background-color: #FFFFFF;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #5A8E8E;
+        }
+
+        summary {
+            padding: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #2C4F4F;
+            list-style: none; /* Quita el triángulo por defecto */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Quita el triángulo en Chrome/Safari */
+        }
+
+        summary:hover {
+            background-color: #fafafa;
+            color: #5A8E8E;
+        }
+
+        /* Icono personalizado + / - */
+        summary::after {
+            content: '+';
+            color: #C17B61;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            border-top: 1px solid #f0f0f0;
+            background-color: #fff;
+            margin-top: 0.5rem; /* Pequeño espacio tras la línea */
+            padding-top: 1rem;
+        }
+
+        /* ========================================= */
+        /* === RESPONSIVE (MÓVIL) CON HAMBURGUESA === */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            
+            .hamburger { display: flex; }
+
+            nav { width: 100%; }
+
+            nav ul {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding-top: 1.5rem;
+                border-top: 1px solid #eee;
+                margin-top: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+
+            nav ul li { margin: 0.8rem 0; }
+
+            nav ul li a {
+                font-size: 1.2rem;
+                display: block;
+                padding: 0.5rem;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            /* Ajustes de contenido en móvil */
+            .faq-header h1 { font-size: 2.2rem; }
+            .highlight-message { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="Logo homepage.png" alt="Logo de Raíces">
+                <div class="logo-text">
+                    <h1>RAÍCES</h1>
+                    <p>Tu bienestar emocional sin fronteras</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="toggleMenu()">Inicio</a></li>
+                <li><a href="index.html#como-funciona" onclick="toggleMenu()">Cómo funciona</a></li>
+                <li><a href="index.html#para-quien" onclick="toggleMenu()">¿Para quién?</a></li>
+                <li><a href="para-estar-mejor.html" onclick="toggleMenu()">Para estar mejor</a></li>
+                <li><a href="testimonios.html" onclick="toggleMenu()">Testimonios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="faq-header">
+        <h1>Preguntas Frecuentes</h1>
+        <p>Resolvemos tus dudas para que puedas dar el primer paso con total tranquilidad.</p>
+    </div>
+
+    <div class="highlight-message">
+        <p>"Agenda tu cita en 2 minutos. Sin registros. Sin cuentas. 100% Confidencial. Sólo necesitamos tu nombre o un apodo y un teléfono"</p>
+    </div>
+
+    <div class="faq-container">
+        
+        <h3 style="color: #4A7C7C; margin-top: 2rem; margin-bottom: 1rem;">Sobre nosotros y la cultura</h3>
+
+        <details>
+            <summary>¿Por qué elegir un psicólogo mexicano si soy de otro país de Latinoamérica?</summary>
+            <div class="faq-answer">
+                México tiene una larga tradición en psicología de alta calidad y un profundo entendimiento de los procesos migratorios. Compartimos raíces culturales, valores familiares y contextos sociales muy similares con el resto de Latinoamérica, lo que facilita una conexión genuina y empática.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿La terapia es solo para mexicanos o para cualquier latino?</summary>
+            <div class="faq-answer">
+                ¡Es para todos! Atendemos a personas de Colombia, Venezuela, Perú, Argentina, Centroamérica y más. Nuestro enfoque es el bienestar emocional del migrante latino, sin importar su bandera.
+            </div>
+        </details>
+
+        <details>
+            <summary>"No soy mexicano, ¿entenderán mis modismos?"</summary>
+            <div class="faq-answer">
+                Sí. Nuestros profesionales tienen experiencia internacional y están capacitados en competencia cultural. Entienden que una palabra puede significar cosas distintas en cada país y siempre preguntarán para asegurarse de comprenderte al 100%.
+            </div>
+        </details>
+
+        <details>
+            <summary>Mis hijos entienden español pero responden en inglés (o Spanglish), ¿los pueden atender?</summary>
+            <div class="faq-answer">
+                Absolutamente. Entendemos perfectamente la realidad bicultural y el "Spanglish". Es un fenómeno natural en familias migrantes y nuestros terapeutas están cómodos trabajando en ese contexto.
+            </div>
+        </details>
+
+        <h3 style="color: #4A7C7C; margin-top: 2rem; margin-bottom: 1rem;">Nuestros Profesionales</h3>
+
+        <details>
+            <summary>¿Los psicólogos están titulados y verificados?</summary>
+            <div class="faq-answer">
+                Sí, es nuestro requisito más estricto. Todos nuestros terapeutas cuentan con Cédula Profesional (licencia) vigente en México y pasan por un proceso de verificación de credenciales y antecedentes.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Qué enfoques psicológicos manejan?</summary>
+            <div class="faq-answer">
+                Contamos con terapeutas de diversas corrientes, principalmente Cognitivo-Conductual, Humanista, Sistémica (familiar) y Psicoanálisis. En tu primera sesión evaluaremos cuál es el mejor para ti.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Qué tipo de problemas pueden atender?</summary>
+            <div class="faq-answer">
+                Atendemos ansiedad, depresión, duelo (por pérdida de familia o por dejar el país), problemas de pareja, estrés migratorio, adaptación cultural, autoestima y conflictos familiares, entre otros.
+            </div>
+        </details>
+
+        <h3 style="color: #4A7C7C; margin-top: 2rem; margin-bottom: 1rem;">Cómo funcionan las sesiones</h3>
+
+        <details>
+            <summary>Nunca he ido al psicólogo, ¿cómo es la primera sesión?</summary>
+            <div class="faq-answer">
+                Es una charla tranquila para conocernos. El terapeuta te preguntará qué te trae a consulta y qué esperas lograr. Es un espacio seguro para desahogarte, sin juicios y a tu propio ritmo.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Cuántas sesiones necesito tomar?</summary>
+            <div class="faq-answer">
+                Depende de cada caso. Algunos pacientes sienten alivio en pocas sesiones, otros prefieren un proceso más largo. Tú decides cuándo iniciar y cuándo terminar; no hay contratos forzosos.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Puedo elegir a mi terapeuta o la plataforma me asigna uno?</summary>
+            <div class="faq-answer">
+                Inicialmente te asignamos al especialista que mejor encaje con tu perfil y horario. Sin embargo, si no sientes "química", puedes solicitar un cambio sin ningún problema.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Es este un servicio de emergencia?</summary>
+            <div class="faq-answer">
+                <strong>No.</strong> Si estás en una crisis inmediata o tu vida corre peligro, por favor llama al 911 en tu país de residencia o acude a urgencias. Nuestro servicio es de acompañamiento programado.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿El psicólogo puede recetarme medicamentos?</summary>
+            <div class="faq-answer">
+                No. Los psicólogos brindan terapia a través de la palabra. Si tu caso requiere medicación, te sugeriremos consultar a un psiquiatra en tu localidad.
+            </div>
+        </details>
+
+        <h3 style="color: #4A7C7C; margin-top: 2rem; margin-bottom: 1rem;">Tecnología y Pagos</h3>
+
+        <details>
+            <summary>¿Es confidencial la información que comparto?</summary>
+            <div class="faq-answer">
+                Totalmente. Nos regimos por el secreto profesional y las leyes de protección de datos. Lo que dices en sesión, se queda en sesión.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Qué plataforma usan para las videollamadas?</summary>
+            <div class="faq-answer">
+                Usamos principalmente Google Meet o Zoom, que son seguras y fáciles de usar. También podemos usar videollamada de WhatsApp si es más fácil para ti.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Puedo tomar la terapia desde mi celular?</summary>
+            <div class="faq-answer">
+                ¡Sí! Solo asegúrate de estar en un lugar privado y con buena señal de internet.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Qué pasa si mi conexión a internet falla durante la sesión?</summary>
+            <div class="faq-answer">
+                No te preocupes. El terapeuta intentará reconectar o te llamará por teléfono. Si la falla persiste, reprogramaremos el tiempo restante sin costo extra.
+            </div>
+        </details>
+
+        <details>
+            <summary>No soy muy bueno con la tecnología, ¿me ayudan a conectarme la primera vez?</summary>
+            <div class="faq-answer">
+                Claro que sí. Te enviaremos un enlace directo donde solo tienes que dar "clic". Si tienes problemas, te asistimos por WhatsApp paso a paso.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Puedo cancelar o cambiar mi cita?</summary>
+            <div class="faq-answer">
+                Sí, pedimos que nos avises con al menos 24 horas de anticipación para poder ofrecer ese horario a otra persona que lo necesite.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿En qué moneda se realizan los pagos?</summary>
+            <div class="faq-answer">
+                Nuestros precios base suelen estar en Dólares (USD) para estandarizar, pero al pagar con tarjeta o PayPal, tu banco hace la conversión automática a tu moneda local.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Cuáles son los métodos de pago aceptados?</summary>
+            <div class="faq-answer">
+                Aceptamos tarjetas de débito/crédito y PayPal a través de nuestra plataforma segura.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Es más económico que un psicólogo en mi país de residencia actual?</summary>
+            <div class="faq-answer">
+                Generalmente sí. Al ser profesionales basados en México, podemos ofrecer tarifas mucho más accesibles que los costos promedio en Estados Unidos o Europa, sin sacrificar la calidad.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Puedo pagar yo las sesiones para un familiar (mi mamá, mi hijo, mi pareja)?</summary>
+            <div class="faq-answer">
+                Sí, puedes realizar el pago y nosotros coordinamos la sesión con tu familiar. Es un regalo de bienestar muy común.
+            </div>
+        </details>
+
+        <details>
+            <summary>Quiero que mi esposo vaya a terapia, ¿puedo hacer la cita por él?</summary>
+            <div class="faq-answer">
+                Puedes pagar y agendar, pero es fundamental que él esté de acuerdo y quiera asistir. La terapia funciona mejor cuando es voluntaria.
+            </div>
+        </details>
+
+        <details>
+            <summary>¿Atienden a niños o adolescentes?</summary>
+            <div class="faq-answer">
+                Sí, contamos con especialistas en psicología infantil y adolescente. En estos casos, la primera entrevista suele ser con los padres.
+            </div>
+        </details>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Raíces - Apoyo Psicológico Profesional</p>
+        <p>Atención en línea • Confidencial • En español</p>
+        
+        <div class="footer-links">
+            <a href="Aviso_privacidad.html">Términos y Condiciones ; Aviso de Privacidad</a>
+            <a href="preguntas.html">Preguntas frecuentes</a>
+            <a href="agendar.html">Contacto</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
